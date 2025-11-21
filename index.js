@@ -4,6 +4,7 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 // Connect to DB (will log connection info)
 require('./src/db');
@@ -18,6 +19,7 @@ const likeRoutes = require('./src/routes/like.route');
 const plantProfileRoutes = require('./src/routes/plant_profile.route');
 const saveRoutes = require('./src/routes/save.route');
 const notificationRoutes = require('./src/routes/notification.route');
+const uploadRoutes = require('./src/routes/upload.route');
 
 const limiter = rateLimit({
   windowMs: 3 * 60 * 1000, // 3 minutes
@@ -36,6 +38,9 @@ app.use(limiter);
 
 app.use(bodyParser.json());
 
+// Servir archivos estáticos desde la carpeta uploads
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 app.get('/', (req, res) => res.json({ ok: true, msg: 'Plantgram API' }));
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
@@ -47,6 +52,7 @@ app.use('/api/likes', likeRoutes);
 app.use('/api/plant-profiles', plantProfileRoutes);
 app.use('/api/saves', saveRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/upload', uploadRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Plantgram API listening on port ${port}`));
