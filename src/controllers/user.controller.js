@@ -13,7 +13,14 @@ exports.createUser = async (req, res) => {
 exports.getUsers = async (req, res) => {
   try {
     const users = await User.find().sort({ created_at: -1 }).limit(100);
-    res.json(users);
+    // Remover password_hash de la respuesta
+    const sanitizedUsers = users.map(user => {
+      const userObj = user.toObject();
+      delete userObj.password_hash;
+      return userObj;
+    });
+
+    res.json(sanitizedUsers);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -22,8 +29,11 @@ exports.getUsers = async (req, res) => {
 exports.getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
-    if (!user) return res.status(404).json({ error: 'User not found' });
-    res.json(user);
+    if (!user) return res.status(404).json({ error: "User not found" });
+    // Remover password_hash de la respuesta
+    const userObj = user.toObject();
+    delete userObj.password_hash;
+    res.json(userObj);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
