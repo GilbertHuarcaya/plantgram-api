@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 // Connect to DB (will log connection info)
 require('./src/db');
 
+const authRoutes = require('./src/routes/auth.route');
 const userRoutes = require('./src/routes/user.route');
 const postRoutes = require('./src/routes/post.route');
 const speciesRoutes = require('./src/routes/species.route');
@@ -36,6 +37,7 @@ app.use(limiter);
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.json({ ok: true, msg: 'Plantgram API' }));
+app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/species', speciesRoutes);
