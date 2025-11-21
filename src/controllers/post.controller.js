@@ -1,8 +1,15 @@
 const Post = require('../models/post.model');
+const fs = require('fs');
+const path = require('path');
 
 exports.createPost = async (req, res) => {
   try {
-    const post = new Post(req.body);
+    const body = { ...req.body };
+    if (req.file) {
+      body.media = { type: 'image', url: `/uploads/${req.file.filename}` };
+    }
+
+    const post = new Post(body);
     await post.save();
     res.status(201).json(post);
   } catch (err) {
@@ -40,8 +47,28 @@ exports.getPostById = async (req, res) => {
 
 exports.updatePost = async (req, res) => {
   try {
-    const post = await Post.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const post = await Post.findById(req.params.id);
     if (!post) return res.status(404).json({ error: 'Post not found' });
+
+    // Si se sube nuevo archivo, eliminar el anterior
+    if (req.file) {
+      if (post.media && post.media.url && post.media.url.startsWith('/uploads/')) {
+        const oldFilename = post.media.url.replace('/uploads/', '');
+        const oldPath = path.join(__dirname, '../../uploads', oldFilename);
+        if (fs.existsSync(oldPath)) {
+          try { fs.unlinkSync(oldPath); } catch (e) { /* ignore */ }
+        }
+      }
+      post.media = { type: 'image', url: `/uploads/${req.file.filename}` };
+    }
+
+    // actualizar campos restantes
+    const updatable = ['title', 'description', 'tags', 'species_id'];
+    updatable.forEach(field => {
+      if (req.body[field] !== undefined) post[field] = req.body[field];
+    });
+
+    await post.save();
     res.json(post);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -50,8 +77,19 @@ exports.updatePost = async (req, res) => {
 
 exports.deletePost = async (req, res) => {
   try {
-    const post = await Post.findByIdAndDelete(req.params.id);
+    const post = await Post.findById(req.params.id);
     if (!post) return res.status(404).json({ error: 'Post not found' });
+
+    // eliminar media si existe
+    if (post.media && post.media.url && post.media.url.startsWith('/uploads/')) {
+      const filename = post.media.url.replace('/uploads/', '');
+      const filePath = path.join(__dirname, '../../uploads', filename);
+      if (fs.existsSync(filePath)) {
+        try { fs.unlinkSync(filePath); } catch (e) { /* ignore */ }
+      }
+    }
+
+    await Post.findByIdAndDelete(req.params.id);
     res.json({ ok: true });
   } catch (err) {
     res.status(500).json({ error: err.message });
