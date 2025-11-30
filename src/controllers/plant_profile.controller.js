@@ -10,10 +10,29 @@ exports.createProfile = async (req, res) => {
   }
 };
 
+exports.getAllProfiles = async (req, res) => {
+  try {
+    const list = await PlantProfile.find().populate('user_id', '-password_hash');
+    res.json(list);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 exports.getProfilesByUser = async (req, res) => {
   try {
     const list = await PlantProfile.find({ user_id: req.params.userId });
     res.json(list);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+exports.getProfileById = async (req, res) => {
+  try {
+    const p = await PlantProfile.findById(req.params.id).populate('user_id', '-password_hash');
+    if (!p) return res.status(404).json({ error: 'Profile not found' });
+    res.json(p);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

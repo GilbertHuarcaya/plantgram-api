@@ -4,6 +4,7 @@ const controller = require('../controllers/comment.controller');
 const { authenticateToken } = require("../controllers/auth.controller");
 
 router.post("/", authenticateToken, controller.createComment);
+router.get('/', controller.getComments);
 router.get('/post/:postId', controller.getCommentsByPost);
 router.delete("/:id", authenticateToken, controller.deleteComment);
 

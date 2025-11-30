@@ -144,3 +144,17 @@ exports.authenticateToken = (req, res, next) => {
     res.status(401).json({ error: 'Token invalido o expirado' });
   }
 };
+
+// Try to authenticate if Authorization header is present; don't fail when missing or invalid.
+exports.maybeAuthenticate = (req, res, next) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) return next();
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.user = decoded;
+    return next();
+  } catch (err) {
+    // ignore errors and continue without user
+    return next();
+  }
+};
