@@ -26,6 +26,14 @@ npm run dev
 npm run seed
 ```
 
+# Docker containers composition installation
+
+1. Run in terminal
+
+```bash
+docker-compose up --build
+```
+
 ## Endpoints
 
 ### Health Check
