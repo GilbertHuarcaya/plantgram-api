@@ -32,8 +32,12 @@ const app = express();
 // Configure Helmet but allow cross-origin resource loading for static assets
 app.use(helmet({
   contentSecurityPolicy: false,
-  crossOriginResourcePolicy: { policy: 'cross-origin' }
+  crossOriginResourcePolicy: { policy: 'cross-origin' },
 }));
+//X-FRAME-OPTIONS Y X-CONTENT-TYPE-OPTIONS
+app.use(helmet.frameguard({ action: 'deny' }));
+app.use(helmet.noSniff());
+
 app.use(cors());
 
 app.use(limiter);
