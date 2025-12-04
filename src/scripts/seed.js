@@ -36,7 +36,7 @@ async function seed() {
         email: 'laura.gomez@gmail.com',
         password_hash: '$2b$10$abcdefghijklmnopqrstuvwxyz123456',
         full_name: 'Laura Gomez',
-        profile_pic: 'https://drive.google.com/file/d/img/laura.jpg',
+        profile_pic: 'https://i.pravatar.cc/150?img=1',
         bio: 'Amante de las plantas ornamentales y el diseno web.',
         created_at: new Date('2025-10-01T10:30:00.000Z')
       },
@@ -45,7 +45,7 @@ async function seed() {
         email: 'carlos.rivera@gmail.com',
         password_hash: '$2b$10$abcdefghijklmnopqrstuvwxyz123456',
         full_name: 'Carlos Rivera',
-        profile_pic: 'https://drive.google.com/file/d/img/carlos.jpg',
+        profile_pic: 'https://i.pravatar.cc/150?img=12',
         bio: 'Estudiante de biologia, explorando la naturaleza.',
         created_at: new Date('2025-10-02T14:15:00.000Z')
       },
@@ -54,7 +54,7 @@ async function seed() {
         email: 'maria.flores@gmail.com',
         password_hash: '$2b$10$abcdefghijklmnopqrstuvwxyz123456',
         full_name: 'Maria Flores',
-        profile_pic: 'https://drive.google.com/file/d/img/maria.jpg',
+        profile_pic: 'https://i.pravatar.cc/150?img=5',
         bio: 'Jardinera urbana. Especialista en suculentas y cactus.',
         created_at: new Date('2025-10-05T08:20:00.000Z')
       },
@@ -63,7 +63,7 @@ async function seed() {
         email: 'juan.perez@gmail.com',
         password_hash: '$2b$10$abcdefghijklmnopqrstuvwxyz123456',
         full_name: 'Juan Perez',
-        profile_pic: 'https://drive.google.com/file/d/img/juan.jpg',
+        profile_pic: 'https://i.pravatar.cc/150?img=13',
         bio: 'Coleccionista de plantas tropicales. Vivero familiar desde 1995.',
         created_at: new Date('2025-10-07T16:45:00.000Z')
       },
@@ -72,7 +72,7 @@ async function seed() {
         email: 'ana.martinez@gmail.com',
         password_hash: '$2b$10$abcdefghijklmnopqrstuvwxyz123456',
         full_name: 'Ana Martinez',
-        profile_pic: 'https://drive.google.com/file/d/img/ana.jpg',
+        profile_pic: 'https://i.pravatar.cc/150?img=9',
         bio: 'Botanica y educadora. Compartiendo conocimiento sobre plantas.',
         created_at: new Date('2025-10-10T11:00:00.000Z')
       },
@@ -81,7 +81,7 @@ async function seed() {
         email: 'pedro.sanchez@gmail.com',
         password_hash: '$2b$10$abcdefghijklmnopqrstuvwxyz123456',
         full_name: 'Pedro Sanchez',
-        profile_pic: 'https://drive.google.com/file/d/img/pedro.jpg',
+        profile_pic: 'https://i.pravatar.cc/150?img=14',
         bio: 'Aficionado a las plantas carnivoras y especies raras.',
         created_at: new Date('2025-10-12T09:30:00.000Z')
       },
@@ -90,7 +90,7 @@ async function seed() {
         email: 'sofia.ramirez@gmail.com',
         password_hash: '$2b$10$abcdefghijklmnopqrstuvwxyz123456',
         full_name: 'Sofia Ramirez',
-        profile_pic: 'https://drive.google.com/file/d/img/sofia.jpg',
+        profile_pic: 'https://i.pravatar.cc/150?img=10',
         bio: 'Diseñadora de jardines verticales y paisajismo sostenible.',
         created_at: new Date('2025-10-15T14:20:00.000Z')
       },
@@ -99,7 +99,7 @@ async function seed() {
         email: 'miguel.torres@gmail.com',
         password_hash: '$2b$10$abcdefghijklmnopqrstuvwxyz123456',
         full_name: 'Miguel Torres',
-        profile_pic: 'https://drive.google.com/file/d/img/miguel.jpg',
+        profile_pic: 'https://i.pravatar.cc/150?img=15',
         bio: 'Cultivador de orquideas. Mas de 200 especies en mi coleccion.',
         created_at: new Date('2025-10-18T10:15:00.000Z')
       },
@@ -108,7 +108,7 @@ async function seed() {
         email: 'elena.vargas@gmail.com',
         password_hash: '$2b$10$abcdefghijklmnopqrstuvwxyz123456',
         full_name: 'Elena Vargas',
-        profile_pic: 'https://drive.google.com/file/d/img/elena.jpg',
+        profile_pic: 'https://i.pravatar.cc/150?img=20',
         bio: 'Amante de los helechos y plantas de interior.',
         created_at: new Date('2025-10-20T13:40:00.000Z')
       },
@@ -117,7 +117,7 @@ async function seed() {
         email: 'roberto.jimenez@gmail.com',
         password_hash: '$2b$10$abcdefghijklmnopqrstuvwxyz123456',
         full_name: 'Roberto Jimenez',
-        profile_pic: 'https://drive.google.com/file/d/img/roberto.jpg',
+        profile_pic: 'https://i.pravatar.cc/150?img=33',
         bio: 'Experto en bonsais y arboles en miniatura.',
         created_at: new Date('2025-10-22T15:50:00.000Z')
       }
@@ -301,64 +301,130 @@ async function seed() {
     const insertedSpecies = await Species.insertMany(species);
     console.log(`Created ${insertedSpecies.length} species`);
 
-    // Create Posts (more than 50)
+    // Define plant images array (used for posts and plant profiles)
+    const plantImages = [
+      'https://images.unsplash.com/photo-1545241047-6083a3684587?w=800&h=600&fit=crop', // Monstera
+      'https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&h=600&fit=crop', // Orchid
+      'https://images.unsplash.com/photo-1459156212016-c812468e2115?w=800&h=600&fit=crop', // Pothos
+      'https://images.unsplash.com/photo-1509937528035-ad76254b0356?w=800&h=600&fit=crop', // Succulent
+      'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=800&h=600&fit=crop', // Fern
+      'https://images.unsplash.com/photo-1463320726281-696a485928c7?w=800&h=600&fit=crop', // Ficus
+      'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=800&h=600&fit=crop', // Cactus
+      'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=800&h=600&fit=crop', // Anthurium
+      'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=800&h=600&fit=crop', // Snake plant
+      'https://images.unsplash.com/photo-1525498128493-380d1990a112?w=800&h=600&fit=crop', // Calathea
+      'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=800&h=600&fit=crop', // Aloe
+      'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=800&h=600&fit=crop', // Begonia
+      'https://images.unsplash.com/photo-1585016495481-91613a3ab1bc?w=800&h=600&fit=crop', // Philodendron
+      'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=800&h=600&fit=crop', // Jade
+      'https://images.unsplash.com/photo-1591958911259-bee2173bdccc?w=800&h=600&fit=crop', // African violet
+      'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=800&h=600&fit=crop', // ZZ plant
+      'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=800&h=600&fit=crop', // Spider plant
+      'https://images.unsplash.com/photo-1558603668-6570496b66f8?w=800&h=600&fit=crop', // Monstera adansonii
+      'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=800&h=600&fit=crop', // Pilea
+      'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=800&h=600&fit=crop', // Dracaena
+      'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=800&h=600&fit=crop', // Hoya
+      'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=800&h=600&fit=crop', // Maranta
+      'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=800&h=600&fit=crop', // Alocasia
+      'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=800&h=600&fit=crop', // Peperomia
+      'https://images.unsplash.com/photo-1466781783364-36c955e42a7f?w=800&h=600&fit=crop', // Mixed plants
+      'https://images.unsplash.com/photo-1470058869958-2a77ade41c02?w=800&h=600&fit=crop', // Plant collection
+      'https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?w=800&h=600&fit=crop', // Indoor plants
+      'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=800&h=600&fit=crop', // Plant in pot
+      'https://images.unsplash.com/photo-1508002366005-75a695ee2d17?w=800&h=600&fit=crop', // Green leaves
+      'https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=800&h=600&fit=crop' // Hanging plants
+    ];
+
+    // Create Plant Profiles first (needed for posts)
+    const plantProfiles = [];
+    const nicknames = [
+      'Bella', 'Verde', 'Gigante', 'Pequeña', 'Hermosa', 'Reina', 'Princesa',
+      'Tesoro', 'Joya', 'Estrella', 'Luna', 'Sol', 'Amiga', 'Compañera',
+      'Veterana', 'Nueva', 'Especial', 'Unica', 'Favorita', 'Mimada'
+    ];
+
+    for (const user of insertedUsers) {
+      const numProfiles = Math.floor(Math.random() * 5) + 2;
+      
+      for (let i = 0; i < numProfiles; i++) {
+        const randomSpecies = insertedSpecies[Math.floor(Math.random() * insertedSpecies.length)];
+        const randomNickname = nicknames[Math.floor(Math.random() * nicknames.length)];
+        const speciesIndex = insertedSpecies.indexOf(randomSpecies);
+        
+        plantProfiles.push({
+          user_id: user._id,
+          nickname: randomNickname,
+          species: randomSpecies.common_name,
+          species_id: randomSpecies._id,
+          notes: `Esta es mi ${randomSpecies.common_name}. La adquiri hace ${Math.floor(Math.random() * 24) + 1} meses y ha sido un placer cuidarla.`,
+          profile_pic: plantImages[speciesIndex % plantImages.length],
+          created_at: new Date(Date.now() - Math.random() * 365 * 24 * 3600000)
+        });
+      }
+    }
+
+    const insertedPlantProfiles = await PlantProfile.insertMany(plantProfiles);
+    console.log(`Created ${insertedPlantProfiles.length} plant profiles`);
+
+    // Create Posts (more than 50) with real plant images from Unsplash
     const posts = [];
+    
     const postTitles = [
-      { title: 'Mi nueva Monstera deliciosa', desc: 'Acabo de adquirir esta hermosa Monstera. Sus hojas son perfectas y el tamaño es ideal para mi sala.', tags: ['monstera', 'nueva', 'interior'], speciesIdx: 0 },
-      { title: 'Consejos para cuidar orquideas', desc: 'Despues de años de experiencia, aqui comparto mis mejores tips para mantener orquideas saludables y florecientes.', tags: ['orquidea', 'consejos', 'cuidados'], speciesIdx: 1 },
-      { title: 'Mi coleccion de suculentas', desc: 'He estado coleccionando suculentas durante 5 años. Aqui les muestro mi seleccion favorita de Echeverias.', tags: ['suculentas', 'coleccion', 'echeveria'], speciesIdx: 3 },
-      { title: 'Pothos en agua vs tierra', desc: 'Experimento comparando el crecimiento de Pothos en agua versus sustrato tradicional. Resultados sorprendentes.', tags: ['pothos', 'experimento', 'propagacion'], speciesIdx: 2 },
-      { title: 'Helecho de Boston gigante', desc: 'Mi helecho ha crecido increiblemente este año. Les comparto mi rutina de cuidados y fertilizacion.', tags: ['helecho', 'crecimiento', 'interior'], speciesIdx: 4 },
-      { title: 'Ficus Lyrata: antes y despues', desc: 'Transformacion de mi Ficus en 6 meses. Cambio de ubicacion y riego fue clave para su recuperacion.', tags: ['ficus', 'transformacion', 'cuidados'], speciesIdx: 5 },
-      { title: 'Cactus San Pedro floreciendo', desc: 'Despues de 3 años, finalmente mi cactus San Pedro florece. Las flores nocturnas son espectaculares.', tags: ['cactus', 'floracion', 'desertico'], speciesIdx: 6 },
-      { title: 'Anturios rojos perfectos', desc: 'Los anturios son mis favoritos. Aqui les muestro como logro ese color rojo intenso y brillante.', tags: ['anturio', 'rojo', 'tropical'], speciesIdx: 7 },
-      { title: 'Sansevieria: la planta indestructible', desc: 'Si eres principiante, la Sansevieria es para ti. Requiere minimo cuidado y purifica el aire.', tags: ['sansevieria', 'facil', 'purificadora'], speciesIdx: 8 },
-      { title: 'Calathea y sus patrones', desc: 'Las Calatheas tienen los patrones mas hermosos. Esta Calathea ornata es mi orgullo.', tags: ['calathea', 'patron', 'follaje'], speciesIdx: 9 },
-      { title: 'Propagacion de Aloe Vera', desc: 'Tutorial paso a paso para propagar Aloe Vera desde hijuelos. Muy facil y efectivo.', tags: ['aloe', 'propagacion', 'tutorial'], speciesIdx: 10 },
-      { title: 'Begonia Rex multicolor', desc: 'La variedad de colores en las Begonias Rex es asombrosa. Esta es mi ultima adquisicion.', tags: ['begonia', 'colorida', 'variedad'], speciesIdx: 11 },
-      { title: 'Filodendro trepador', desc: 'Mi filodendro ha trepado toda la pared. Les muestro como guiar su crecimiento vertical.', tags: ['filodendro', 'trepador', 'vertical'], speciesIdx: 12 },
-      { title: 'Planta de Jade centenaria', desc: 'Esta Crassula ovata tiene mas de 30 años. Herencia familiar que cuido con mucho cariño.', tags: ['jade', 'antigua', 'herencia'], speciesIdx: 13 },
-      { title: 'Violetas africanas en floracion', desc: 'Mis violetas florecen todo el año. El secreto esta en la luz indirecta constante.', tags: ['violeta', 'floracion', 'interior'], speciesIdx: 14 },
-      { title: 'ZZ Plant: resistencia extrema', desc: 'La Zamioculca sobrevivio a un mes sin riego. Perfecta para personas ocupadas.', tags: ['zz', 'resistente', 'facil'], speciesIdx: 15 },
-      { title: 'Planta araña con bebes', desc: 'Mi Chlorophytum esta produciendo muchos hijuelos. Los estoy propagando para regalar.', tags: ['araña', 'bebes', 'propagacion'], speciesIdx: 16 },
-      { title: 'Monstera Adansonii colgante', desc: 'Esta Monstera adansonii luce espectacular en maceta colgante. Sus hojas perforadas son únicas.', tags: ['monstera', 'colgante', 'perforada'], speciesIdx: 17 },
-      { title: 'Pilea Peperomioides: la tendencia', desc: 'La planta de moda. Mi Pilea ha crecido perfectamente y produce muchos hijuelos.', tags: ['pilea', 'moderna', 'tendencia'], speciesIdx: 18 },
-      { title: 'Dracena marginata de 2 metros', desc: 'Mi Dracena alcanzo los 2 metros de altura. Impresionante presencia en el living.', tags: ['dracena', 'alta', 'interior'], speciesIdx: 19 },
-      { title: 'Hoya carnosa en floracion', desc: 'Las flores de cera de la Hoya son increiblemente fragantes. Florecio despues de 2 años.', tags: ['hoya', 'flor', 'fragante'], speciesIdx: 20 },
-      { title: 'Maranta: la planta que reza', desc: 'La Maranta cierra sus hojas por la noche como si rezara. Fascinante movimiento natural.', tags: ['maranta', 'movimiento', 'nocturna'], speciesIdx: 21 },
-      { title: 'Alocasia Amazonica impresionante', desc: 'Las hojas oscuras y venas blancas de esta Alocasia son dramaticas y hermosas.', tags: ['alocasia', 'dramatica', 'tropical'], speciesIdx: 22 },
-      { title: 'Peperomia compacta y facil', desc: 'La Peperomia es perfecta para espacios reducidos. Requiere poco mantenimiento.', tags: ['peperomia', 'compacta', 'pequeña'], speciesIdx: 23 },
-      { title: 'Mi jardin vertical urbano', desc: 'Transforme mi balcon en un jardin vertical con mas de 30 plantas diferentes.', tags: ['jardin', 'vertical', 'urbano'], speciesIdx: null },
-      { title: 'Terrario de suculentas', desc: 'Cree un terrario con diferentes especies de suculentas. El resultado es un mini ecosistema.', tags: ['terrario', 'suculentas', 'decoracion'], speciesIdx: 3 },
-      { title: 'Rotacion de plantas segun la luz', desc: 'Sistema de rotacion para que todas mis plantas reciban luz natural equilibrada.', tags: ['luz', 'rotacion', 'cuidados'], speciesIdx: null },
-      { title: 'Macetas de ceramica artesanal', desc: 'Mis nuevas macetas hechas a mano complementan perfectamente mis plantas.', tags: ['macetas', 'ceramica', 'artesanal'], speciesIdx: null },
-      { title: 'Control de plagas organico', desc: 'Metodos naturales para controlar plagas sin quimicos. Muy efectivos y seguros.', tags: ['plagas', 'organico', 'natural'], speciesIdx: null },
-      { title: 'Fertilizante casero para plantas', desc: 'Receta de fertilizante organico casero que ha mejorado notablemente mis plantas.', tags: ['fertilizante', 'casero', 'organico'], speciesIdx: null },
-      { title: 'Propagacion por esqueje en agua', desc: 'Tecnica de propagacion que uso para multiplicar mis plantas favoritas.', tags: ['propagacion', 'esqueje', 'agua'], speciesIdx: 2 },
-      { title: 'Sustrato perfecto para tropicales', desc: 'Mi mezcla de sustrato para plantas tropicales. Drenaje y retencion de humedad ideal.', tags: ['sustrato', 'tropical', 'mezcla'], speciesIdx: 0 },
-      { title: 'Humidificador para plantas', desc: 'Inversion que cambio la salud de mis plantas tropicales. Diferencia notable en crecimiento.', tags: ['humedad', 'humidificador', 'tropical'], speciesIdx: null },
-      { title: 'Luz artificial para plantas', desc: 'Sistema de iluminacion LED que complementa la luz natural en invierno.', tags: ['luz', 'artificial', 'led'], speciesIdx: null },
-      { title: 'Organizacion de mi invernadero', desc: 'Tour por mi pequeño invernadero casero donde cultivo plantas exoticas.', tags: ['invernadero', 'organizacion', 'tour'], speciesIdx: null },
-      { title: 'Plantas purificadoras de aire', desc: 'Seleccion de plantas que mejoran la calidad del aire en interiores segun estudios.', tags: ['purificadora', 'aire', 'salud'], speciesIdx: 8 },
-      { title: 'Riego automatico casero', desc: 'Sistema DIY de riego automatico para cuando salgo de vacaciones.', tags: ['riego', 'automatico', 'diy'], speciesIdx: null },
-      { title: 'Plantas para baño con poca luz', desc: 'Especies que prosperan en la humedad del baño y no requieren mucha luz.', tags: ['baño', 'humedad', 'poca-luz'], speciesIdx: 4 },
-      { title: 'Coleccion de cactus miniatura', desc: 'Mas de 40 especies diferentes de cactus en miniatura. Cada uno es único.', tags: ['cactus', 'miniatura', 'coleccion'], speciesIdx: 6 },
-      { title: 'Plantas que sobrevivieron al invierno', desc: 'Balance de que plantas resistieron el invierno y cuales necesitaron mas cuidados.', tags: ['invierno', 'resistencia', 'balance'], speciesIdx: null },
-      { title: 'Trasplante de Monstera grande', desc: 'Tutorial sobre como trasplantar una Monstera de gran tamaño sin dañar las raices.', tags: ['trasplante', 'monstera', 'tutorial'], speciesIdx: 0 },
-      { title: 'Orquideas en corteza vs musgo', desc: 'Comparacion de medios de cultivo para orquideas. Cada uno tiene sus ventajas.', tags: ['orquidea', 'sustrato', 'comparacion'], speciesIdx: 1 },
-      { title: 'Plantas toxicas para mascotas', desc: 'Informacion importante sobre plantas que pueden ser peligrosas para perros y gatos.', tags: ['toxicas', 'mascotas', 'seguridad'], speciesIdx: null },
-      { title: 'Mi estanteria de plantas', desc: 'Diseñe esta estanteria especialmente para maximizar el espacio vertical.', tags: ['estanteria', 'diseño', 'vertical'], speciesIdx: null },
-      { title: 'Plantas de bajo mantenimiento', desc: 'Top 10 de plantas para personas que viajan frecuentemente o son principiantes.', tags: ['facil', 'bajo-mantenimiento', 'principiantes'], speciesIdx: 15 },
-      { title: 'Multiplicacion de suculentas', desc: 'Como obtener nuevas plantas de suculentas desde una sola hoja. Muy gratificante.', tags: ['suculentas', 'multiplicacion', 'hoja'], speciesIdx: 3 },
-      { title: 'Plantas aromaticas en casa', desc: 'Cultivar hierbas aromaticas en interior. Frescas para cocinar siempre disponibles.', tags: ['aromaticas', 'hierbas', 'cocina'], speciesIdx: null },
-      { title: 'Bonsai de Ficus para principiantes', desc: 'El Ficus es ideal para empezar en el arte del bonsai. Muy tolerante y moldeable.', tags: ['bonsai', 'ficus', 'arte'], speciesIdx: 5 },
-      { title: 'Kokedama: plantas sin maceta', desc: 'Tecnica japonesa de cultivar plantas en bolas de musgo. Decorativo y funcional.', tags: ['kokedama', 'japones', 'musgo'], speciesIdx: null },
-      { title: 'Plantas carnivoras exoticas', desc: 'Mi coleccion de plantas carnivoras. Fascinantes mecanismos de captura.', tags: ['carnivoras', 'exoticas', 'coleccion'], speciesIdx: null },
-      { title: 'Macrame para macetas colgantes', desc: 'Aprendi a hacer macrame para colgar mis plantas. Proyecto creativo y util.', tags: ['macrame', 'colgante', 'diy'], speciesIdx: null },
-      { title: 'Plantas que crecen en agua', desc: 'Experimento cultivando diferentes especies permanentemente en agua.', tags: ['hidroponico', 'agua', 'experimento'], speciesIdx: 2 },
-      { title: 'Mi jardin botanico personal', desc: 'Recorrido por mi coleccion de mas de 150 plantas organizadas por familias.', tags: ['coleccion', 'botanico', 'tour'], speciesIdx: null },
-      { title: 'Plantas raras y exoticas', desc: 'Adquisiciones recientes de especies poco comunes. Verdaderas joyas botanicas.', tags: ['raras', 'exoticas', 'especiales'], speciesIdx: 22 },
-      { title: 'Calendario de cuidados mensual', desc: 'Organizo los cuidados de mis plantas con un calendario detallado por mes.', tags: ['calendario', 'organizacion', 'planificacion'], speciesIdx: null }
+      { title: 'Mi nueva Monstera deliciosa', desc: 'Acabo de adquirir esta hermosa Monstera. Sus hojas son perfectas y el tamaño es ideal para mi sala.', tags: ['monstera', 'nueva', 'interior'], speciesIdx: 0, imgIdx: 0 },
+      { title: 'Consejos para cuidar orquideas', desc: 'Despues de años de experiencia, aqui comparto mis mejores tips para mantener orquideas saludables y florecientes.', tags: ['orquidea', 'consejos', 'cuidados'], speciesIdx: 1, imgIdx: 1 },
+      { title: 'Mi coleccion de suculentas', desc: 'He estado coleccionando suculentas durante 5 años. Aqui les muestro mi seleccion favorita de Echeverias.', tags: ['suculentas', 'coleccion', 'echeveria'], speciesIdx: 3, imgIdx: 3 },
+      { title: 'Pothos en agua vs tierra', desc: 'Experimento comparando el crecimiento de Pothos en agua versus sustrato tradicional. Resultados sorprendentes.', tags: ['pothos', 'experimento', 'propagacion'], speciesIdx: 2, imgIdx: 2 },
+      { title: 'Helecho de Boston gigante', desc: 'Mi helecho ha crecido increiblemente este año. Les comparto mi rutina de cuidados y fertilizacion.', tags: ['helecho', 'crecimiento', 'interior'], speciesIdx: 4, imgIdx: 4 },
+      { title: 'Ficus Lyrata: antes y despues', desc: 'Transformacion de mi Ficus en 6 meses. Cambio de ubicacion y riego fue clave para su recuperacion.', tags: ['ficus', 'transformacion', 'cuidados'], speciesIdx: 5, imgIdx: 5 },
+      { title: 'Cactus San Pedro floreciendo', desc: 'Despues de 3 años, finalmente mi cactus San Pedro florece. Las flores nocturnas son espectaculares.', tags: ['cactus', 'floracion', 'desertico'], speciesIdx: 6, imgIdx: 6 },
+      { title: 'Anturios rojos perfectos', desc: 'Los anturios son mis favoritos. Aqui les muestro como logro ese color rojo intenso y brillante.', tags: ['anturio', 'rojo', 'tropical'], speciesIdx: 7, imgIdx: 7 },
+      { title: 'Sansevieria: la planta indestructible', desc: 'Si eres principiante, la Sansevieria es para ti. Requiere minimo cuidado y purifica el aire.', tags: ['sansevieria', 'facil', 'purificadora'], speciesIdx: 8, imgIdx: 8 },
+      { title: 'Calathea y sus patrones', desc: 'Las Calatheas tienen los patrones mas hermosos. Esta Calathea ornata es mi orgullo.', tags: ['calathea', 'patron', 'follaje'], speciesIdx: 9, imgIdx: 9 },
+      { title: 'Propagacion de Aloe Vera', desc: 'Tutorial paso a paso para propagar Aloe Vera desde hijuelos. Muy facil y efectivo.', tags: ['aloe', 'propagacion', 'tutorial'], speciesIdx: 10, imgIdx: 10 },
+      { title: 'Begonia Rex multicolor', desc: 'La variedad de colores en las Begonias Rex es asombrosa. Esta es mi ultima adquisicion.', tags: ['begonia', 'colorida', 'variedad'], speciesIdx: 11, imgIdx: 11 },
+      { title: 'Filodendro trepador', desc: 'Mi filodendro ha trepado toda la pared. Les muestro como guiar su crecimiento vertical.', tags: ['filodendro', 'trepador', 'vertical'], speciesIdx: 12, imgIdx: 12 },
+      { title: 'Planta de Jade centenaria', desc: 'Esta Crassula ovata tiene mas de 30 años. Herencia familiar que cuido con mucho cariño.', tags: ['jade', 'antigua', 'herencia'], speciesIdx: 13, imgIdx: 13 },
+      { title: 'Violetas africanas en floracion', desc: 'Mis violetas florecen todo el año. El secreto esta en la luz indirecta constante.', tags: ['violeta', 'floracion', 'interior'], speciesIdx: 14, imgIdx: 14 },
+      { title: 'ZZ Plant: resistencia extrema', desc: 'La Zamioculca sobrevivio a un mes sin riego. Perfecta para personas ocupadas.', tags: ['zz', 'resistente', 'facil'], speciesIdx: 15, imgIdx: 15 },
+      { title: 'Planta araña con bebes', desc: 'Mi Chlorophytum esta produciendo muchos hijuelos. Los estoy propagando para regalar.', tags: ['araña', 'bebes', 'propagacion'], speciesIdx: 16, imgIdx: 16 },
+      { title: 'Monstera Adansonii colgante', desc: 'Esta Monstera adansonii luce espectacular en maceta colgante. Sus hojas perforadas son únicas.', tags: ['monstera', 'colgante', 'perforada'], speciesIdx: 17, imgIdx: 17 },
+      { title: 'Pilea Peperomioides: la tendencia', desc: 'La planta de moda. Mi Pilea ha crecido perfectamente y produce muchos hijuelos.', tags: ['pilea', 'moderna', 'tendencia'], speciesIdx: 18, imgIdx: 18 },
+      { title: 'Dracena marginata de 2 metros', desc: 'Mi Dracena alcanzo los 2 metros de altura. Impresionante presencia en el living.', tags: ['dracena', 'alta', 'interior'], speciesIdx: 19, imgIdx: 19 },
+      { title: 'Hoya carnosa en floracion', desc: 'Las flores de cera de la Hoya son increiblemente fragantes. Florecio despues de 2 años.', tags: ['hoya', 'flor', 'fragante'], speciesIdx: 20, imgIdx: 20 },
+      { title: 'Maranta: la planta que reza', desc: 'La Maranta cierra sus hojas por la noche como si rezara. Fascinante movimiento natural.', tags: ['maranta', 'movimiento', 'nocturna'], speciesIdx: 21, imgIdx: 21 },
+      { title: 'Alocasia Amazonica impresionante', desc: 'Las hojas oscuras y venas blancas de esta Alocasia son dramaticas y hermosas.', tags: ['alocasia', 'dramatica', 'tropical'], speciesIdx: 22, imgIdx: 22 },
+      { title: 'Peperomia compacta y facil', desc: 'La Peperomia es perfecta para espacios reducidos. Requiere poco mantenimiento.', tags: ['peperomia', 'compacta', 'pequeña'], speciesIdx: 23, imgIdx: 23 },
+      { title: 'Mi jardin vertical urbano', desc: 'Transforme mi balcon en un jardin vertical con mas de 30 plantas diferentes.', tags: ['jardin', 'vertical', 'urbano'], speciesIdx: null, imgIdx: 24 },
+      { title: 'Terrario de suculentas', desc: 'Cree un terrario con diferentes especies de suculentas. El resultado es un mini ecosistema.', tags: ['terrario', 'suculentas', 'decoracion'], speciesIdx: 3, imgIdx: 3 },
+      { title: 'Rotacion de plantas segun la luz', desc: 'Sistema de rotacion para que todas mis plantas reciban luz natural equilibrada.', tags: ['luz', 'rotacion', 'cuidados'], speciesIdx: null, imgIdx: 25 },
+      { title: 'Macetas de ceramica artesanal', desc: 'Mis nuevas macetas hechas a mano complementan perfectamente mis plantas.', tags: ['macetas', 'ceramica', 'artesanal'], speciesIdx: null, imgIdx: 26 },
+      { title: 'Control de plagas organico', desc: 'Metodos naturales para controlar plagas sin quimicos. Muy efectivos y seguros.', tags: ['plagas', 'organico', 'natural'], speciesIdx: null, imgIdx: 27 },
+      { title: 'Fertilizante casero para plantas', desc: 'Receta de fertilizante organico casero que ha mejorado notablemente mis plantas.', tags: ['fertilizante', 'casero', 'organico'], speciesIdx: null, imgIdx: 28 },
+      { title: 'Propagacion por esqueje en agua', desc: 'Tecnica de propagacion que uso para multiplicar mis plantas favoritas.', tags: ['propagacion', 'esqueje', 'agua'], speciesIdx: 2, imgIdx: 2 },
+      { title: 'Sustrato perfecto para tropicales', desc: 'Mi mezcla de sustrato para plantas tropicales. Drenaje y retencion de humedad ideal.', tags: ['sustrato', 'tropical', 'mezcla'], speciesIdx: 0, imgIdx: 0 },
+      { title: 'Humidificador para plantas', desc: 'Inversion que cambio la salud de mis plantas tropicales. Diferencia notable en crecimiento.', tags: ['humedad', 'humidificador', 'tropical'], speciesIdx: null, imgIdx: 29 },
+      { title: 'Luz artificial para plantas', desc: 'Sistema de iluminacion LED que complementa la luz natural en invierno.', tags: ['luz', 'artificial', 'led'], speciesIdx: null, imgIdx: 24 },
+      { title: 'Organizacion de mi invernadero', desc: 'Tour por mi pequeño invernadero casero donde cultivo plantas exoticas.', tags: ['invernadero', 'organizacion', 'tour'], speciesIdx: null, imgIdx: 25 },
+      { title: 'Plantas purificadoras de aire', desc: 'Seleccion de plantas que mejoran la calidad del aire en interiores segun estudios.', tags: ['purificadora', 'aire', 'salud'], speciesIdx: 8, imgIdx: 8 },
+      { title: 'Riego automatico casero', desc: 'Sistema DIY de riego automatico para cuando salgo de vacaciones.', tags: ['riego', 'automatico', 'diy'], speciesIdx: null, imgIdx: 26 },
+      { title: 'Plantas para baño con poca luz', desc: 'Especies que prosperan en la humedad del baño y no requieren mucha luz.', tags: ['baño', 'humedad', 'poca-luz'], speciesIdx: 4, imgIdx: 4 },
+      { title: 'Coleccion de cactus miniatura', desc: 'Mas de 40 especies diferentes de cactus en miniatura. Cada uno es único.', tags: ['cactus', 'miniatura', 'coleccion'], speciesIdx: 6, imgIdx: 6 },
+      { title: 'Plantas que sobrevivieron al invierno', desc: 'Balance de que plantas resistieron el invierno y cuales necesitaron mas cuidados.', tags: ['invierno', 'resistencia', 'balance'], speciesIdx: null, imgIdx: 27 },
+      { title: 'Trasplante de Monstera grande', desc: 'Tutorial sobre como trasplantar una Monstera de gran tamaño sin dañar las raices.', tags: ['trasplante', 'monstera', 'tutorial'], speciesIdx: 0, imgIdx: 0 },
+      { title: 'Orquideas en corteza vs musgo', desc: 'Comparacion de medios de cultivo para orquideas. Cada uno tiene sus ventajas.', tags: ['orquidea', 'sustrato', 'comparacion'], speciesIdx: 1, imgIdx: 1 },
+      { title: 'Plantas toxicas para mascotas', desc: 'Informacion importante sobre plantas que pueden ser peligrosas para perros y gatos.', tags: ['toxicas', 'mascotas', 'seguridad'], speciesIdx: null, imgIdx: 28 },
+      { title: 'Mi estanteria de plantas', desc: 'Diseñe esta estanteria especialmente para maximizar el espacio vertical.', tags: ['estanteria', 'diseño', 'vertical'], speciesIdx: null, imgIdx: 29 },
+      { title: 'Plantas de bajo mantenimiento', desc: 'Top 10 de plantas para personas que viajan frecuentemente o son principiantes.', tags: ['facil', 'bajo-mantenimiento', 'principiantes'], speciesIdx: 15, imgIdx: 15 },
+      { title: 'Multiplicacion de suculentas', desc: 'Como obtener nuevas plantas de suculentas desde una sola hoja. Muy gratificante.', tags: ['suculentas', 'multiplicacion', 'hoja'], speciesIdx: 3, imgIdx: 3 },
+      { title: 'Plantas aromaticas en casa', desc: 'Cultivar hierbas aromaticas en interior. Frescas para cocinar siempre disponibles.', tags: ['aromaticas', 'hierbas', 'cocina'], speciesIdx: null, imgIdx: 24 },
+      { title: 'Bonsai de Ficus para principiantes', desc: 'El Ficus es ideal para empezar en el arte del bonsai. Muy tolerante y moldeable.', tags: ['bonsai', 'ficus', 'arte'], speciesIdx: 5, imgIdx: 5 },
+      { title: 'Kokedama: plantas sin maceta', desc: 'Tecnica japonesa de cultivar plantas en bolas de musgo. Decorativo y funcional.', tags: ['kokedama', 'japones', 'musgo'], speciesIdx: null, imgIdx: 25 },
+      { title: 'Plantas carnivoras exoticas', desc: 'Mi coleccion de plantas carnivoras. Fascinantes mecanismos de captura.', tags: ['carnivoras', 'exoticas', 'coleccion'], speciesIdx: null, imgIdx: 26 },
+      { title: 'Macrame para macetas colgantes', desc: 'Aprendi a hacer macrame para colgar mis plantas. Proyecto creativo y util.', tags: ['macrame', 'colgante', 'diy'], speciesIdx: null, imgIdx: 27 },
+      { title: 'Plantas que crecen en agua', desc: 'Experimento cultivando diferentes especies permanentemente en agua.', tags: ['hidroponico', 'agua', 'experimento'], speciesIdx: 2, imgIdx: 2 },
+      { title: 'Mi jardin botanico personal', desc: 'Recorrido por mi coleccion de mas de 150 plantas organizadas por familias.', tags: ['coleccion', 'botanico', 'tour'], speciesIdx: null, imgIdx: 28 },
+      { title: 'Plantas raras y exoticas', desc: 'Adquisiciones recientes de especies poco comunes. Verdaderas joyas botanicas.', tags: ['raras', 'exoticas', 'especiales'], speciesIdx: 22, imgIdx: 22 },
+      { title: 'Calendario de cuidados mensual', desc: 'Organizo los cuidados de mis plantas con un calendario detallado por mes.', tags: ['calendario', 'organizacion', 'planificacion'], speciesIdx: null, imgIdx: 29 }
     ];
 
     let postDate = new Date('2025-09-01T08:00:00.000Z');
@@ -366,14 +432,29 @@ async function seed() {
       const pt = postTitles[i];
       const randomUser = insertedUsers[Math.floor(Math.random() * insertedUsers.length)];
       
+      // Find a plant profile from this user that matches the species (if available)
+      const userProfiles = insertedPlantProfiles.filter(pp => pp.user_id.equals(randomUser._id));
+      let plantProfileId = null;
+      if (pt.speciesIdx !== null && userProfiles.length > 0) {
+        const matchingProfile = userProfiles.find(pp => pp.species_id && pp.species_id.equals(insertedSpecies[pt.speciesIdx]._id));
+        if (matchingProfile) {
+          plantProfileId = matchingProfile._id;
+        } else if (Math.random() > 0.5 && userProfiles.length > 0) {
+          // Sometimes associate with any profile from this user
+          plantProfileId = userProfiles[Math.floor(Math.random() * userProfiles.length)]._id;
+        }
+      }
+      
       posts.push({
         user_id: randomUser._id,
         title: pt.title,
         description: pt.desc,
-        media: { type: 'image', url: `https://drive.google.com/file/d/img/post_${i + 1}.jpg` },
+        image_url: plantImages[pt.imgIdx % plantImages.length],
+        plant_profile_id: plantProfileId,
         tags: pt.tags,
         species_id: pt.speciesIdx !== null ? insertedSpecies[pt.speciesIdx]._id : null,
         likes_count: 0,
+        saves_count: 0,
         comments_count: 0,
         created_at: new Date(postDate)
       });
@@ -481,12 +562,18 @@ async function seed() {
     for (const post of insertedPosts) {
       await Post.updateOne(
         { _id: post._id },
-        { $set: { likes_count: post.likes_count, comments_count: post.comments_count } }
+        { $set: { 
+          likes_count: post.likes_count, 
+          comments_count: post.comments_count,
+          saves_count: post.saves_count 
+        } }
       );
     }
 
     // Create Saves
     const saves = [];
+    const postSaveCounts = new Map(); // Track saves per post
+    
     for (const user of insertedUsers) {
       const numSaves = Math.floor(Math.random() * 12) + 3;
       const savedPosts = new Set();
@@ -500,11 +587,22 @@ async function seed() {
             post_id: randomPost._id,
             created_at: new Date()
           });
+          // Track count
+          const currentCount = postSaveCounts.get(randomPost._id.toString()) || 0;
+          postSaveCounts.set(randomPost._id.toString(), currentCount + 1);
         }
       }
     }
     const insertedSaves = await Save.insertMany(saves);
     console.log(`Created ${insertedSaves.length} saves`);
+    
+    // Update posts saves_count
+    for (const [postIdStr, count] of postSaveCounts.entries()) {
+      const post = insertedPosts.find(p => p._id.toString() === postIdStr);
+      if (post) {
+        post.saves_count = count;
+      }
+    }
 
     // Create Notifications
     const notifications = [];
@@ -553,35 +651,6 @@ async function seed() {
 
     const insertedNotifications = await Notification.insertMany(notifications);
     console.log(`Created ${insertedNotifications.length} notifications`);
-
-    // Create Plant Profiles
-    const plantProfiles = [];
-    const nicknames = [
-      'Bella', 'Verde', 'Gigante', 'Pequeña', 'Hermosa', 'Reina', 'Princesa',
-      'Tesoro', 'Joya', 'Estrella', 'Luna', 'Sol', 'Amiga', 'Compañera',
-      'Veterana', 'Nueva', 'Especial', 'Unica', 'Favorita', 'Mimada'
-    ];
-
-    for (const user of insertedUsers) {
-      const numProfiles = Math.floor(Math.random() * 5) + 2;
-      
-      for (let i = 0; i < numProfiles; i++) {
-        const randomSpecies = insertedSpecies[Math.floor(Math.random() * insertedSpecies.length)];
-        const randomNickname = nicknames[Math.floor(Math.random() * nicknames.length)];
-        
-        plantProfiles.push({
-          user_id: user._id,
-          nickname: randomNickname,
-          species_id: randomSpecies._id,
-          notes: `Esta es mi ${randomSpecies.common_name}. La adquiri hace ${Math.floor(Math.random() * 24) + 1} meses y ha sido un placer cuidarla.`,
-          profile_pic: `https://drive.google.com/file/d/img/profile_${randomSpecies.common_name.toLowerCase()}.jpg`,
-          created_at: new Date(Date.now() - Math.random() * 365 * 24 * 3600000)
-        });
-      }
-    }
-
-    const insertedPlantProfiles = await PlantProfile.insertMany(plantProfiles);
-    console.log(`Created ${insertedPlantProfiles.length} plant profiles`);
 
     console.log('\n=== SEEDING SUMMARY ===');
     console.log(`Users: ${insertedUsers.length}`);
